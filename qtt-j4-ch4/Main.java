@@ -15,12 +15,16 @@ public class Main {
     int guess = -1;
 
     while (guess != solution) {
-      System.out.print("Please guess a number between " + low + " and " + high + ": ");
-      guess = getGuess(scan);
+      while (guess > high || guess < low) {
+        System.out.print("Please guess a number between " + low + " and " + high + ": ");
+        guess = getGuess(scan);
+      }
       if (guess > solution) {
         System.out.println("LOWER!");
+        play(low, guess - 1, solution);
       } else if (guess < solution) {
         System.out.println("HIGHER!");
+        play(guess + 1, high, solution);
       } else {
         System.out.println("YAY MAJAY!  You got it!");
       }
